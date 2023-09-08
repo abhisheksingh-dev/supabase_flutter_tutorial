@@ -8,18 +8,20 @@ import 'package:supabase_app_example/screens/widgets/custom_snackbar.dart';
 import 'package:supabase_app_example/screens/widgets/glass_app_bar.dart';
 import 'package:supabase_app_example/screens/widgets/glass_morphism.dart';
 
-class SignupEmailView extends StatefulWidget {
-  const SignupEmailView({super.key});
-
+class LoginWithEmail extends StatefulWidget {
   @override
-  State<SignupEmailView> createState() => _SignupEmailViewState();
+  State<LoginWithEmail> createState() => _LoginWithEmailState();
 }
 
-class _SignupEmailViewState extends State<SignupEmailView> {
+class _LoginWithEmailState extends State<LoginWithEmail> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   bool obscureText = true;
+
   List<TerminalModel> terminal_model = [];
 
   @override
@@ -220,13 +222,17 @@ class _SignupEmailViewState extends State<SignupEmailView> {
                                             Provider.of<LoginProvider>(context,
                                                 listen: false);
                                         try {
-                                          var res = await supabase.auth.signUp(
+                                          var res = await supabase.auth
+                                              .signInWithPassword(
                                             email: emailController.text,
                                             password: passwordController.text,
                                           );
                                           if (res.user != null) {
                                             authHandeler.updateLoginStatus(
                                                 res: true);
+                                            addToTerminalMessage(
+                                                msg:
+                                                    'user Successfully logged in ${res.user!.id}');
                                             if (mounted) {
                                               context.showSnackBar(
                                                   message:

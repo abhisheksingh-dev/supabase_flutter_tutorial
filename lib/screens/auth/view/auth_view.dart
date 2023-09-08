@@ -16,6 +16,7 @@ class AuthView extends StatelessWidget {
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: GlassAppBar(
           title: model.title,
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       extendBody: true,
@@ -55,7 +56,14 @@ class AuthView extends StatelessWidget {
                       subTitle: 'Signup With Email And Password',
                     ),
                     FunctionCard(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignupEmailView(),
+                          ),
+                        );
+                      },
                       title: 'Login With Email',
                       subTitle: 'Login With Email And Password',
                     ),
