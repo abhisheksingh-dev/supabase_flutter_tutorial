@@ -37,44 +37,47 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: GlassAppBar(
-          title: 'Supabase Flutter Example',
+    return WillPopScope(
+      onWillPop: () async => Future.value(false),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: GlassAppBar(
+            title: 'Supabase Flutter Example',
+          ),
         ),
-      ),
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      body: Stack(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: LottieBuilder.asset(
-              'assets/blu.json',
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisExtent: 320,
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: LottieBuilder.asset(
+                'assets/blu.json',
+                fit: BoxFit.cover,
               ),
-              itemCount: list.length,
-              itemBuilder: (context, index) {
-                return SupabaseHomeCardsWidget(
-                  model: list[index],
-                );
-              },
             ),
-          ),
-        ],
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisExtent: 320,
+                ),
+                itemCount: list.length,
+                itemBuilder: (context, index) {
+                  return SupabaseHomeCardsWidget(
+                    model: list[index],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
