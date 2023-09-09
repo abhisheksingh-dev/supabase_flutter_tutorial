@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:supabase_app_example/screens/auth/view/auth_view.dart';
 import 'package:supabase_app_example/screens/home/model/home_card_model.dart';
+import 'package:supabase_app_example/screens/native_auth/view/native_auth_view.dart';
 import 'package:supabase_app_example/screens/widgets/glass_morphism.dart';
 
 class SupabaseHomeCardsWidget extends StatelessWidget {
@@ -23,6 +24,13 @@ class SupabaseHomeCardsWidget extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => AuthView(model: model),
+                  ));
+              break;
+            case 'NATIVE AUTH':
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NativeAuthView(model: model),
                   ));
               break;
             default:

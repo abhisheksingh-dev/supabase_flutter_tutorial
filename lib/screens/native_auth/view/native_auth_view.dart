@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
-import 'package:supabase_app_example/screens/auth/screens/magic_login/magic_login.dart';
-import 'package:supabase_app_example/screens/auth/screens/signup/view/signup_email_view.dart';
 import 'package:supabase_app_example/screens/auth/widget/function_card.dart';
 import 'package:supabase_app_example/screens/home/model/home_card_model.dart';
+import 'package:supabase_app_example/screens/native_auth/screens/apple/apple_login_view.dart';
 import 'package:supabase_app_example/screens/widgets/glass_app_bar.dart';
-import 'package:supabase_app_example/screens/widgets/glass_morphism.dart';
 
-class AuthView extends StatelessWidget {
-  const AuthView({super.key, required this.model});
+class NativeAuthView extends StatelessWidget {
+  const NativeAuthView({super.key, required this.model});
+
   final HomeCardModel model;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,36 +49,12 @@ class AuthView extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SignupEmailView(),
+                            builder: (context) => AppleLoginView(),
                           ),
                         );
                       },
-                      title: 'Signup With Email',
-                      subTitle: 'Signup With Email And Password',
-                    ),
-                    FunctionCard(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SignupEmailView(),
-                          ),
-                        );
-                      },
-                      title: 'Login With Email',
-                      subTitle: 'Login With Email And Password',
-                    ),
-                    FunctionCard(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MagicLoginView(),
-                          ),
-                        );
-                      },
-                      title: 'Login With Email & OTP',
-                      subTitle: 'Login With Email And OTP',
+                      title: 'Apple Signin',
+                      subTitle: 'Login With apple devices',
                     ),
                   ],
                 ),
