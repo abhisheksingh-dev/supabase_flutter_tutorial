@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_app_example/const.dart';
+import 'package:supabase_app_example/main.dart';
 import 'package:supabase_app_example/provider/login_provider.dart';
 import 'package:supabase_app_example/screens/widgets/glass_morphism.dart';
 
@@ -71,7 +72,15 @@ class GlassAppBar extends StatelessWidget {
             centerTitle: false,
             leading: (onPressed != null)
                 ? IconButton(
-                    onPressed: onPressed, icon: Icon(Icons.keyboard_arrow_left))
+                    onPressed: onPressed,
+                    icon: Icon(Icons.keyboard_arrow_left),
+                    splashColor: devicePlatform == DevicePlatform.android
+                        ? null
+                        : Colors.transparent,
+                    highlightColor: devicePlatform == DevicePlatform.android
+                        ? null
+                        : Colors.transparent,
+                  )
                 : null,
             title: Text(
               title,
